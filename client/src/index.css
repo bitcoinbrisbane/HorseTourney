@@ -1,66 +1,4 @@
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: dark;
-  color: #e0e0e0;
-  background-color: #0f0f1a;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-a {
-  font-weight: 500;
-  color: #4a90d9;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #7eb8da;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #252542;
-  color: #e0e0e0;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-button:hover {
-  background-color: #2d2d52;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 2px solid #4a90d9;
-  outline-offset: 2px;
-}
-
-/* Scrollbar styling */
+/* Custom scrollbar styling for dark theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -71,10 +9,15 @@ button:focus-visible {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3a3a5a;
+  background: #495057;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4a4a7a;
+  background: #6c757d;
+}
+
+/* Ensure full height */
+#root {
+  min-height: 100vh;
 }

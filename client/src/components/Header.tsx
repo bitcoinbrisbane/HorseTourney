@@ -1,5 +1,3 @@
-import './Header.css';
-
 export function Header() {
   const today = new Date().toLocaleDateString('en-AU', {
     weekday: 'long',
@@ -9,12 +7,12 @@ export function Header() {
   });
 
   return (
-    <header className="app-header">
-      <div className="header-brand">
-        <span className="header-icon">🏇</span>
-        <h1 className="header-title">Horse Tourney</h1>
+    <header className="navbar navbar-dark bg-dark border-bottom border-secondary px-4">
+      <div className="d-flex align-items-center gap-3">
+        <span className="fs-3">🏇</span>
+        <h1 className="navbar-brand mb-0 fs-4 fw-bold">Horse Tourney</h1>
       </div>
-      <div className="header-date">{today}</div>
+      <div className="text-secondary">{today}</div>
     </header>
   );
 }
