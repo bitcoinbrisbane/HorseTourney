@@ -1,0 +1,182 @@
+.race-matrix-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #0f0f1a;
+}
+
+.matrix-title {
+  padding: 20px 24px;
+  margin: 0;
+  font-size: 1.3rem;
+  color: #fff;
+  background: #16162a;
+  border-bottom: 1px solid #2a2a4a;
+}
+
+.race-matrix-wrapper {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+}
+
+.race-matrix {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px;
+}
+
+.race-matrix th,
+.race-matrix td {
+  padding: 0;
+}
+
+.meet-header {
+  text-align: left;
+  padding: 12px 16px !important;
+  background: #252542;
+  color: #b0b0c0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  min-width: 140px;
+}
+
+.race-header {
+  text-align: center;
+  padding: 12px 8px !important;
+  background: #252542;
+  color: #b0b0c0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.meet-cell {
+  background: #1e1e38;
+  border-radius: 8px;
+  padding: 12px 16px !important;
+  vertical-align: middle;
+}
+
+.meet-cell-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meet-cell-name {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.meet-cell-weather {
+  font-size: 0.75rem;
+  color: #8a8aa0;
+}
+
+.race-cell {
+  background: #1e1e38;
+  border-radius: 8px;
+  padding: 0 !important;
+  vertical-align: top;
+  transition: all 0.2s ease;
+}
+
+.race-cell:hover {
+  background: #282850;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.race-cell.empty {
+  background: #161628;
+  color: #404060;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px !important;
+}
+
+.race-cell.status-live {
+  border: 2px solid #e63946;
+  animation: pulse 2s infinite;
+}
+
+.race-cell.status-finished {
+  opacity: 0.6;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(230, 57, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+  }
+}
+
+.race-card {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.race-time {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.race-grade {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.grade-g1 {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #1a1a2e;
+}
+
+.grade-g2 {
+  background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+  color: #1a1a2e;
+}
+
+.grade-g3 {
+  background: linear-gradient(135deg, #cd7f32, #a0522d);
+  color: #fff;
+}
+
+.grade-open {
+  background: #4a90d9;
+  color: #fff;
+}
+
+.grade-default {
+  background: #3a3a5a;
+  color: #c0c0d0;
+}
+
+.race-distance {
+  font-size: 0.85rem;
+  color: #a0a0b0;
+  margin-bottom: 4px;
+}
+
+.race-horses {
+  font-size: 0.75rem;
+  color: #7eb8da;
+}
