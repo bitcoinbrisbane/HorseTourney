@@ -2,11 +2,29 @@ import { useState } from 'react';
 import { Header } from './components/Header';
 import { MeetsSidebar } from './components/MeetsSidebar';
 import { RaceMatrix } from './components/RaceMatrix';
+import { BetSlip } from './components/BetSlip';
+import { RaceModal } from './components/RaceModal';
+import { BettingProvider } from './context/BettingContext';
 import { useMeets } from './hooks/useMeets';
+import type { Race } from './types';
 
-function App() {
+interface SelectedRace {
+  race: Race;
+  meetName: string;
+}
+
+function AppContent() {
   const { meets, loading, error } = useMeets();
   const [selectedMeetId, setSelectedMeetId] = useState<string | null>(null);
+  const [selectedRace, setSelectedRace] = useState<SelectedRace | null>(null);
+
+  const handleRaceClick = (race: Race, meetName: string) => {
+    setSelectedRace({ race, meetName });
+  };
+
+  const handleCloseModal = () => {
+    setSelectedRace(null);
+  };
 
   if (loading) {
     return (
@@ -48,9 +66,30 @@ function App() {
           selectedMeetId={selectedMeetId}
           onSelectMeet={setSelectedMeetId}
         />
-        <RaceMatrix meets={meets} selectedMeetId={selectedMeetId} />
+        <RaceMatrix
+          meets={meets}
+          selectedMeetId={selectedMeetId}
+          onRaceClick={handleRaceClick}
+        />
+        <BetSlip />
       </main>
+
+      {selectedRace && (
+        <RaceModal
+          race={selectedRace.race}
+          meetName={selectedRace.meetName}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BettingProvider>
+      <AppContent />
+    </BettingProvider>
   );
 }
 

@@ -41,3 +41,18 @@ export interface RacesByMeet {
   meetId: string;
   races: Race[];
 }
+
+export interface BetSelection {
+  id: string;
+  meetName: string;
+  raceNumber: number;
+  raceId: string;
+  horse: Horse;
+  stake: number;
+}
+
+export interface UserBalance {
+  total: number;
+  available: number;
+  inPlay: number;
+}

@@ -1,8 +1,10 @@
 import type { Meet, Race } from '../types';
+import { useBetting } from '../context/BettingContext';
 
 interface RaceMatrixProps {
   meets: Meet[];
   selectedMeetId: string | null;
+  onRaceClick: (race: Race, meetName: string) => void;
 }
 
 function formatTime(isoString: string): string {
@@ -28,13 +30,19 @@ function getStatusBorder(status: Race['status']): string {
   return '';
 }
 
-export function RaceMatrix({ meets, selectedMeetId }: RaceMatrixProps) {
+export function RaceMatrix({ meets, selectedMeetId, onRaceClick }: RaceMatrixProps) {
+  const { betSlip } = useBetting();
+
   const filteredMeets = selectedMeetId
     ? meets.filter(meet => meet.id === selectedMeetId)
     : meets;
 
   const maxRaces = Math.max(...filteredMeets.map(m => m.races.length), 0);
   const raceNumbers = Array.from({ length: maxRaces }, (_, i) => i + 1);
+
+  const getSelectedHorse = (raceId: string) => {
+    return betSlip.find(bet => bet.raceId === raceId)?.horse;
+  };
 
   return (
     <div className="flex-grow-1 d-flex flex-column bg-black">
@@ -75,12 +83,19 @@ export function RaceMatrix({ meets, selectedMeetId }: RaceMatrixProps) {
                       </td>
                     );
                   }
+                  const selectedHorse = getSelectedHorse(race.id);
+                  const hasSelection = !!selectedHorse;
                   return (
                     <td key={num} className={`p-1 ${getStatusBorder(race.status)}`}>
                       <div
-                        className="card bg-dark border-secondary h-100"
+                        className={`card h-100 ${
+                          hasSelection
+                            ? 'bg-primary bg-opacity-25 border-primary'
+                            : 'bg-dark border-secondary'
+                        }`}
                         role="button"
                         style={{ cursor: 'pointer' }}
+                        onClick={() => onRaceClick(race, meet.name)}
                       >
                         <div className="card-body p-2">
                           <div className="fw-bold text-white mb-1">
@@ -90,7 +105,13 @@ export function RaceMatrix({ meets, selectedMeetId }: RaceMatrixProps) {
                             {race.grade}
                           </span>
                           <div className="small text-secondary">{race.distance}</div>
-                          <div className="small text-info">{race.horses.length} runners</div>
+                          {hasSelection ? (
+                            <div className="small text-primary fw-semibold">
+                              ✓ {selectedHorse.number}. {selectedHorse.name}
+                            </div>
+                          ) : (
+                            <div className="small text-info">{race.horses.length} runners</div>
+                          )}
                         </div>
                       </div>
                     </td>
