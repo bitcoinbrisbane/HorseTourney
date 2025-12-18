@@ -1,4 +1,4 @@
-import { Meet, Race } from '../types';
+import type { Meet, Race } from '../types';
 import './RaceMatrix.css';
 
 interface RaceMatrixProps {

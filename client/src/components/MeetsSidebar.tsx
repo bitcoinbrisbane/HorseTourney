@@ -1,4 +1,4 @@
-import { Meet } from '../types';
+import type { Meet } from '../types';
 import './MeetsSidebar.css';
 
 interface MeetsSidebarProps {

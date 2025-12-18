@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Meet } from '../types';
+import type { Meet } from '../types';
 import { fetchMeets } from '../services/api';
 
 interface UseMeetsReturn {
